@@ -1,0 +1,1172 @@
+- lblPipeHeader:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Opportunity pipeline"
+      Size: =20
+      Color: =RGBA(50, 49, 48, 1)
+      FontWeight: =FontWeight.Semibold
+      X: =40
+      Y: =8
+      Width: =500
+      Height: =36
+- lblPipeViewing:
+    Control: Label@2.5.1
+    Properties:
+      Text: |-
+        ="Viewing as: Digital Project Manager"
+      Size: =10
+      Color: =RGBA(96, 94, 92, 1)
+      X: =560
+      Y: =14
+      Width: =320
+      Height: =24
+- btnLoadSample:
+    Control: Classic/Button@2.2.0
+    Properties:
+      Text: ="Load sample data"
+      Size: =11
+      Fill: =RGBA(255, 255, 255, 1)
+      Color: =RGBA(0, 120, 212, 1)
+      BorderColor: =RGBA(0, 120, 212, 1)
+      BorderThickness: =1
+      Visible: =CountRows(colRequests) = 0
+      X: =900
+      Y: =10
+      Width: =200
+      Height: =34
+      OnSelect: |-
+        =Collect(
+            colRequests,
+                {RequestID: "AIF-2026-001", Title: "Automate invoice processing", Department: "Finance", BusinessOwner: "Test Owner (Accounts Payable Lead)", Route: "Single staff request (Workstream 1)", CurrentTools: "Outlook, Adobe Acrobat, finance system", ProcessDescription: "Each week the team opens supplier PDF invoices, types the details into the finance system and checks each one against its purchase order by hand.", PainPoints: "Typing errors delay supplier payments, and month end regularly needs overtime.", EstWeeklyHoursSaved: 10, ExpectedBenefit: "Efficiency", PersonalDataGDPR: false, FinancialData: true, DPIACheckStatus: "Hold", LifecycleStatus: "New Requests", RequesterEmail: "sample", SubmittedOn: DateTimeValue("2026-10-20T09:12:00Z"), Scored: false, SA: 0, BP: 0, SV: 0, CX: 0, RR: 0, Priority: 0, Tier: "", DecisionReason: "", IsSample: true},
+                {RequestID: "AIF-2026-002", Title: "Student admissions chatbot", Department: "Student Services", BusinessOwner: "Test Owner (Admissions Manager)", Route: "From a hackathon workshop (Workstream 2)", CurrentTools: "Outlook, Teams, shared Word FAQ", ProcessDescription: "Admissions staff answer the same applicant questions by email and phone, copying answers from a shared FAQ document.", PainPoints: "In peak season replies take days and answers are inconsistent between staff.", EstWeeklyHoursSaved: 6, ExpectedBenefit: "Service", PersonalDataGDPR: false, FinancialData: false, DPIACheckStatus: "Not required", LifecycleStatus: "In Delivery", RequesterEmail: "sample", SubmittedOn: DateTimeValue("2026-10-02T11:30:00Z"), Scored: true, SA: 4, BP: 4, SV: 3, CX: 3, RR: 2, Priority: 68, Tier: "Medium", DecisionReason: "", IsSample: true},
+                {RequestID: "AIF-2026-003", Title: "Predictive maintenance for campus HVAC", Department: "Estates and Facilities", BusinessOwner: "Test Owner (Building Services Manager)", Route: "Single staff request (Workstream 1)", CurrentTools: "Excel, building management system exports", ProcessDescription: "Engineers log heating and cooling faults in a spreadsheet after they happen and plan repairs from it each Monday.", PainPoints: "Breakdowns are found late, so rooms get too hot or cold before anyone knows.", EstWeeklyHoursSaved: 4, ExpectedBenefit: "Risk Reduction", PersonalDataGDPR: false, FinancialData: false, DPIACheckStatus: "Not required", LifecycleStatus: "Triaged/Backlog", RequesterEmail: "sample", SubmittedOn: DateTimeValue("2026-10-09T08:45:00Z"), Scored: true, SA: 1, BP: 3, SV: 2, CX: 2, RR: 3, Priority: 35, Tier: "Low", DecisionReason: "", IsSample: true},
+                {RequestID: "AIF-2026-004", Title: "Course reading list generator", Department: "Library and Learning Resources", BusinessOwner: "Test Owner (Academic Liaison Librarian)", Route: "From a hackathon workshop (Workstream 2)", CurrentTools: "Excel, library catalogue, email", ProcessDescription: "Librarians rebuild each module reading list by hand every term, checking every title against the catalogue.", PainPoints: "Lists go out late and often include books the library does not hold.", EstWeeklyHoursSaved: 3, ExpectedBenefit: "Data", PersonalDataGDPR: false, FinancialData: false, DPIACheckStatus: "Not required", LifecycleStatus: "Completed", RequesterEmail: "sample", SubmittedOn: DateTimeValue("2026-09-15T13:10:00Z"), Scored: true, SA: 5, BP: 3, SV: 4, CX: 2, RR: 1, Priority: 80, Tier: "High", DecisionReason: "", IsSample: true},
+                {RequestID: "AIF-2026-005", Title: "Replace HR starter checklist spreadsheet", Department: "Human Resources", BusinessOwner: "Test Owner (HR Operations Lead)", Route: "Single staff request (Workstream 1)", CurrentTools: "Excel, Outlook", ProcessDescription: "For each new starter, HR copies a checklist spreadsheet, emails tasks to IT and the line manager, and chases each one by hand.", PainPoints: "Tasks get missed, so some new starters arrive without a laptop or system access.", EstWeeklyHoursSaved: 5, ExpectedBenefit: "Efficiency", PersonalDataGDPR: true, FinancialData: false, DPIACheckStatus: "Hold", LifecycleStatus: "New Requests", RequesterEmail: "sample", SubmittedOn: DateTimeValue("2026-11-03T10:20:00Z"), Scored: false, SA: 0, BP: 0, SV: 0, CX: 0, RR: 0, Priority: 0, Tier: "", DecisionReason: "", IsSample: true}
+        );
+        Collect(
+            colHistory,
+                {RequestID: "AIF-2026-001", At: DateTimeValue("2026-10-20T09:12:00Z"), By: "Sample data", What: "Submitted"},
+                {RequestID: "AIF-2026-002", At: DateTimeValue("2026-10-02T11:30:00Z"), By: "Sample data", What: "Submitted"},
+                {RequestID: "AIF-2026-002", At: DateTimeValue("2026-10-06T10:05:00Z"), By: "Sample data", What: "Triage scores saved: 68/100 (Medium)"},
+                {RequestID: "AIF-2026-002", At: DateTimeValue("2026-10-06T10:06:00Z"), By: "Sample data", What: "Moved to Triaged/Backlog"},
+                {RequestID: "AIF-2026-002", At: DateTimeValue("2026-10-14T15:20:00Z"), By: "Sample data", What: "Moved to In Delivery"},
+                {RequestID: "AIF-2026-003", At: DateTimeValue("2026-10-09T08:45:00Z"), By: "Sample data", What: "Submitted"},
+                {RequestID: "AIF-2026-003", At: DateTimeValue("2026-10-13T14:00:00Z"), By: "Sample data", What: "Triage scores saved: 35/100 (Low)"},
+                {RequestID: "AIF-2026-003", At: DateTimeValue("2026-10-13T14:02:00Z"), By: "Sample data", What: "Moved to Triaged/Backlog"},
+                {RequestID: "AIF-2026-004", At: DateTimeValue("2026-09-15T13:10:00Z"), By: "Sample data", What: "Submitted"},
+                {RequestID: "AIF-2026-004", At: DateTimeValue("2026-09-18T09:30:00Z"), By: "Sample data", What: "Triage scores saved: 80/100 (High)"},
+                {RequestID: "AIF-2026-004", At: DateTimeValue("2026-09-18T09:31:00Z"), By: "Sample data", What: "Moved to Triaged/Backlog"},
+                {RequestID: "AIF-2026-004", At: DateTimeValue("2026-09-22T10:00:00Z"), By: "Sample data", What: "Moved to In Delivery"},
+                {RequestID: "AIF-2026-004", At: DateTimeValue("2026-11-10T16:45:00Z"), By: "Sample data", What: "Moved to Completed"},
+                {RequestID: "AIF-2026-005", At: DateTimeValue("2026-11-03T10:20:00Z"), By: "Sample data", What: "Submitted"}
+        )
+- btnGoToIntake:
+    Control: Classic/Button@2.2.0
+    Properties:
+      Text: ="Requester view"
+      Size: =11
+      Fill: =RGBA(255, 255, 255, 1)
+      Color: =RGBA(0, 120, 212, 1)
+      BorderColor: =RGBA(0, 120, 212, 1)
+      BorderThickness: =1
+      X: =1120
+      Y: =10
+      Width: =206
+      Height: =34
+      OnSelect: =Navigate(scrIntake, ScreenTransition.None)
+- lblPipeIntro:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Score new requests, clear data protection checks and move work through delivery. Only the Digital Project Manager and authorised staff see this view."
+      Size: =10
+      Color: =RGBA(96, 94, 92, 1)
+      X: =40
+      Y: =48
+      Width: =1286
+      Height: =22
+- txtSearch:
+    Control: Classic/TextInput@2.3.2
+    Properties:
+      Default: =""
+      HintText: ="Search requests"
+      AccessibleLabel: ="Search requests"
+      Size: =11
+      X: =40
+      Y: =74
+      Width: =320
+      Height: =32
+- ddCat:
+    Control: Classic/DropDown@2.3.1
+    Properties:
+      Items: =["All benefit categories", "Efficiency", "Financial", "Service", "Risk Reduction", "Data", "Strategic"]
+      AllowEmptySelection: =false
+      Default: ="All benefit categories"
+      AccessibleLabel: ="Benefit category"
+      Size: =11
+      Visible: =true
+      X: =372
+      Y: =74
+      Width: =240
+      Height: =32
+- tglFlagsOnly:
+    Control: Classic/Toggle@2.1.0
+    Properties:
+      Default: =false
+      TrueText: =""
+      FalseText: =""
+      AccessibleLabel: ="Data flags only"
+      X: =630
+      Y: =75
+      Width: =60
+      Height: =30
+- lblFlagsOnly:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Data flags only"
+      Size: =10
+      Color: =RGBA(50, 49, 48, 1)
+      X: =694
+      Y: =78
+      Width: =180
+      Height: =24
+- lblPipeNote:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Test data only. Sample requests are synthetic."
+      Size: =9
+      Color: =RGBA(50, 49, 48, 1)
+      Fill: =RGBA(255, 244, 206, 1)
+      PaddingLeft: =10
+      X: =900
+      Y: =74
+      Width: =426
+      Height: =32
+- lblColNew:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="New Requests (" & CountRows(galNew.AllItems) & ")"
+      Size: =10
+      Color: =RGBA(50, 49, 48, 1)
+      FontWeight: =FontWeight.Semibold
+      Fill: =RGBA(237, 235, 233, 1)
+      PaddingLeft: =10
+      X: =40
+      Y: =114
+      Width: =250
+      Height: =32
+- galNew:
+    Control: Gallery@2.15.0
+    Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+    Properties:
+      Items: =Sort(Filter(colRequests, LifecycleStatus = "New Requests" && (IsBlank(txtSearch.Text) || txtSearch.Text in Title || txtSearch.Text in RequestID || txtSearch.Text in Department) && (ddCat.Selected.Value = "All benefit categories" || ExpectedBenefit = ddCat.Selected.Value) && (!tglFlagsOnly.Value || PersonalDataGDPR || FinancialData)), RequestID, SortOrder.Ascending)
+      TemplateSize: =150
+      TemplatePadding: =0
+      BorderColor: =RGBA(237, 235, 233, 1)
+      BorderThickness: =1
+      X: =40
+      Y: =146
+      Width: =250
+      Height: =614
+    Children:
+      - lblCardBgNew:
+          Control: Label@2.5.1
+          Properties:
+            Text: =""
+            Size: =11
+            Color: =RGBA(50, 49, 48, 1)
+            Fill: =If(ThisItem.DPIACheckStatus = "Hold", RGBA(255, 244, 230, 1), RGBA(250, 249, 248, 1))
+            PaddingLeft: =10
+            BorderColor: =RGBA(200, 198, 196, 1)
+            BorderThickness: =1
+            X: =4
+            Y: =4
+            Width: =Parent.TemplateWidth - 8
+            Height: =Parent.TemplateHeight - 8
+      - lblCardMetaNew:
+          Control: Label@2.5.1
+          Properties:
+            Text: =ThisItem.RequestID & " · " & ThisItem.ExpectedBenefit & " · " & ThisItem.Department
+            Size: =8
+            Color: =RGBA(96, 94, 92, 1)
+            X: =12
+            Y: =8
+            Width: =Parent.TemplateWidth - 24
+            Height: =18
+      - lblCardTitleNew:
+          Control: Label@2.5.1
+          Properties:
+            Text: =ThisItem.Title
+            Size: =10
+            Color: =RGBA(50, 49, 48, 1)
+            FontWeight: =FontWeight.Semibold
+            VerticalAlign: =VerticalAlign.Top
+            X: =12
+            Y: =26
+            Width: =Parent.TemplateWidth - 24
+            Height: =38
+      - lblCardBadgesNew:
+          Control: Label@2.5.1
+          Properties:
+            Text: |-
+              =Concat(Filter(Table({v: If(ThisItem.PersonalDataGDPR, "GDPR", "")}, {v: If(ThisItem.FinancialData, "Financial", "")}, {v: If(ThisItem.DPIACheckStatus = "Hold", "DPIA hold", If(ThisItem.DPIACheckStatus = "Approved", "DPIA approved", ""))}, {v: If(ThisItem.LifecycleStatus in ["Deferred", "Rejected", "Needs information"], ThisItem.LifecycleStatus, "")}, {v: If(ThisItem.IsSample, "Sample data", "")}), !IsBlank(v)), v, " · ")
+            Size: =8
+            Color: =RGBA(122, 65, 0, 1)
+            FontWeight: =FontWeight.Semibold
+            X: =12
+            Y: =64
+            Width: =Parent.TemplateWidth - 24
+            Height: =18
+      - lblCardPillNew:
+          Control: Label@2.5.1
+          Properties:
+            Text: =If(ThisItem.Scored, "Priority " & ThisItem.Priority & "/100 · " & ThisItem.Tier, "Not scored") & "   ·   " & Text(ThisItem.EstWeeklyHoursSaved * 52 * 25, "£#,##0") & " a year"
+            Size: =8
+            Color: =RGBA(50, 49, 48, 1)
+            X: =12
+            Y: =82
+            Width: =Parent.TemplateWidth - 24
+            Height: =18
+      - btnCardNextNew:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Text: =If(ThisItem.LifecycleStatus = "New Requests" && !ThisItem.Scored, "Score first", ThisItem.LifecycleStatus = "Triaged/Backlog" && ThisItem.DPIACheckStatus = "Hold", "DPIA hold", "Next →")
+            Size: =9
+            DisplayMode: =If(IsBlank(If(ThisItem.LifecycleStatus = "New Requests" && !ThisItem.Scored, ThisItem.RequestID & " needs triage scores before it can move to Triaged/Backlog.", ThisItem.LifecycleStatus = "Triaged/Backlog" && ThisItem.DPIACheckStatus = "Hold", ThisItem.RequestID & " is on DPIA hold. Record the DPIA approval before it moves into delivery.", "")), DisplayMode.Edit, DisplayMode.Disabled)
+            Tooltip: =If(IsBlank(If(ThisItem.LifecycleStatus = "New Requests" && !ThisItem.Scored, ThisItem.RequestID & " needs triage scores before it can move to Triaged/Backlog.", ThisItem.LifecycleStatus = "Triaged/Backlog" && ThisItem.DPIACheckStatus = "Hold", ThisItem.RequestID & " is on DPIA hold. Record the DPIA approval before it moves into delivery.", "")), "Move " & ThisItem.Title & " to " & Switch(ThisItem.LifecycleStatus, "New Requests", "Triaged/Backlog", "Triaged/Backlog", "In Delivery", "In Delivery", "Completed", ""), If(ThisItem.LifecycleStatus = "New Requests" && !ThisItem.Scored, ThisItem.RequestID & " needs triage scores before it can move to Triaged/Backlog.", ThisItem.LifecycleStatus = "Triaged/Backlog" && ThisItem.DPIACheckStatus = "Hold", ThisItem.RequestID & " is on DPIA hold. Record the DPIA approval before it moves into delivery.", ""))
+            X: =88
+            Y: =108
+            Width: =84
+            Height: =30
+            OnSelect: |-
+              =With(
+                  {tgt: Switch(ThisItem.LifecycleStatus, "New Requests", "Triaged/Backlog", "Triaged/Backlog", "In Delivery", "In Delivery", "Completed", "")},
+                  Patch(colRequests, ThisItem, {LifecycleStatus: tgt});
+                  Collect(colHistory, {RequestID: ThisItem.RequestID, At: Now(), By: User().FullName, What: "Moved to " & tgt})
+              )
+      - btnCardOpenNew:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Text: ="Open"
+            Size: =9
+            Fill: =RGBA(255, 255, 255, 1)
+            Color: =RGBA(0, 120, 212, 1)
+            BorderColor: =RGBA(0, 120, 212, 1)
+            BorderThickness: =1
+            Tooltip: ="Open " & ThisItem.Title
+            X: =178
+            Y: =108
+            Width: =60
+            Height: =30
+            OnSelect: =Set(varSelID, ThisItem.RequestID); Set(varDrawer, true); Set(varDecErr, false); Reset(txtReason); Reset(ddDecision); Reset(ddSA); Reset(ddBP); Reset(ddSV); Reset(ddCX); Reset(ddRR)
+- lblColBacklog:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Triaged/Backlog (" & CountRows(galBacklog.AllItems) & ")"
+      Size: =10
+      Color: =RGBA(50, 49, 48, 1)
+      FontWeight: =FontWeight.Semibold
+      Fill: =RGBA(237, 235, 233, 1)
+      PaddingLeft: =10
+      X: =299
+      Y: =114
+      Width: =250
+      Height: =32
+- galBacklog:
+    Control: Gallery@2.15.0
+    Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+    Properties:
+      Items: =Sort(Filter(colRequests, LifecycleStatus = "Triaged/Backlog" && (IsBlank(txtSearch.Text) || txtSearch.Text in Title || txtSearch.Text in RequestID || txtSearch.Text in Department) && (ddCat.Selected.Value = "All benefit categories" || ExpectedBenefit = ddCat.Selected.Value) && (!tglFlagsOnly.Value || PersonalDataGDPR || FinancialData)), RequestID, SortOrder.Ascending)
+      TemplateSize: =150
+      TemplatePadding: =0
+      BorderColor: =RGBA(237, 235, 233, 1)
+      BorderThickness: =1
+      X: =299
+      Y: =146
+      Width: =250
+      Height: =614
+    Children:
+      - lblCardBgBacklog:
+          Control: Label@2.5.1
+          Properties:
+            Text: =""
+            Size: =11
+            Color: =RGBA(50, 49, 48, 1)
+            Fill: =If(ThisItem.DPIACheckStatus = "Hold", RGBA(255, 244, 230, 1), RGBA(250, 249, 248, 1))
+            PaddingLeft: =10
+            BorderColor: =RGBA(200, 198, 196, 1)
+            BorderThickness: =1
+            X: =4
+            Y: =4
+            Width: =Parent.TemplateWidth - 8
+            Height: =Parent.TemplateHeight - 8
+      - lblCardMetaBacklog:
+          Control: Label@2.5.1
+          Properties:
+            Text: =ThisItem.RequestID & " · " & ThisItem.ExpectedBenefit & " · " & ThisItem.Department
+            Size: =8
+            Color: =RGBA(96, 94, 92, 1)
+            X: =12
+            Y: =8
+            Width: =Parent.TemplateWidth - 24
+            Height: =18
+      - lblCardTitleBacklog:
+          Control: Label@2.5.1
+          Properties:
+            Text: =ThisItem.Title
+            Size: =10
+            Color: =RGBA(50, 49, 48, 1)
+            FontWeight: =FontWeight.Semibold
+            VerticalAlign: =VerticalAlign.Top
+            X: =12
+            Y: =26
+            Width: =Parent.TemplateWidth - 24
+            Height: =38
+      - lblCardBadgesBacklog:
+          Control: Label@2.5.1
+          Properties:
+            Text: |-
+              =Concat(Filter(Table({v: If(ThisItem.PersonalDataGDPR, "GDPR", "")}, {v: If(ThisItem.FinancialData, "Financial", "")}, {v: If(ThisItem.DPIACheckStatus = "Hold", "DPIA hold", If(ThisItem.DPIACheckStatus = "Approved", "DPIA approved", ""))}, {v: If(ThisItem.LifecycleStatus in ["Deferred", "Rejected", "Needs information"], ThisItem.LifecycleStatus, "")}, {v: If(ThisItem.IsSample, "Sample data", "")}), !IsBlank(v)), v, " · ")
+            Size: =8
+            Color: =RGBA(122, 65, 0, 1)
+            FontWeight: =FontWeight.Semibold
+            X: =12
+            Y: =64
+            Width: =Parent.TemplateWidth - 24
+            Height: =18
+      - lblCardPillBacklog:
+          Control: Label@2.5.1
+          Properties:
+            Text: =If(ThisItem.Scored, "Priority " & ThisItem.Priority & "/100 · " & ThisItem.Tier, "Not scored") & "   ·   " & Text(ThisItem.EstWeeklyHoursSaved * 52 * 25, "£#,##0") & " a year"
+            Size: =8
+            Color: =RGBA(50, 49, 48, 1)
+            X: =12
+            Y: =82
+            Width: =Parent.TemplateWidth - 24
+            Height: =18
+      - btnCardBackBacklog:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Text: ="← Back"
+            Size: =9
+            Fill: =RGBA(255, 255, 255, 1)
+            Color: =RGBA(0, 120, 212, 1)
+            BorderColor: =RGBA(0, 120, 212, 1)
+            BorderThickness: =1
+            X: =12
+            Y: =108
+            Width: =70
+            Height: =30
+            OnSelect: |-
+              =With(
+                  {tgt: Switch(ThisItem.LifecycleStatus, "Triaged/Backlog", "New Requests", "In Delivery", "Triaged/Backlog", "Completed", "In Delivery", "")},
+                  Patch(colRequests, ThisItem, {LifecycleStatus: tgt});
+                  Collect(colHistory, {RequestID: ThisItem.RequestID, At: Now(), By: User().FullName, What: "Moved to " & tgt})
+              )
+      - btnCardNextBacklog:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Text: =If(ThisItem.LifecycleStatus = "New Requests" && !ThisItem.Scored, "Score first", ThisItem.LifecycleStatus = "Triaged/Backlog" && ThisItem.DPIACheckStatus = "Hold", "DPIA hold", "Next →")
+            Size: =9
+            DisplayMode: =If(IsBlank(If(ThisItem.LifecycleStatus = "New Requests" && !ThisItem.Scored, ThisItem.RequestID & " needs triage scores before it can move to Triaged/Backlog.", ThisItem.LifecycleStatus = "Triaged/Backlog" && ThisItem.DPIACheckStatus = "Hold", ThisItem.RequestID & " is on DPIA hold. Record the DPIA approval before it moves into delivery.", "")), DisplayMode.Edit, DisplayMode.Disabled)
+            Tooltip: =If(IsBlank(If(ThisItem.LifecycleStatus = "New Requests" && !ThisItem.Scored, ThisItem.RequestID & " needs triage scores before it can move to Triaged/Backlog.", ThisItem.LifecycleStatus = "Triaged/Backlog" && ThisItem.DPIACheckStatus = "Hold", ThisItem.RequestID & " is on DPIA hold. Record the DPIA approval before it moves into delivery.", "")), "Move " & ThisItem.Title & " to " & Switch(ThisItem.LifecycleStatus, "New Requests", "Triaged/Backlog", "Triaged/Backlog", "In Delivery", "In Delivery", "Completed", ""), If(ThisItem.LifecycleStatus = "New Requests" && !ThisItem.Scored, ThisItem.RequestID & " needs triage scores before it can move to Triaged/Backlog.", ThisItem.LifecycleStatus = "Triaged/Backlog" && ThisItem.DPIACheckStatus = "Hold", ThisItem.RequestID & " is on DPIA hold. Record the DPIA approval before it moves into delivery.", ""))
+            X: =88
+            Y: =108
+            Width: =84
+            Height: =30
+            OnSelect: |-
+              =With(
+                  {tgt: Switch(ThisItem.LifecycleStatus, "New Requests", "Triaged/Backlog", "Triaged/Backlog", "In Delivery", "In Delivery", "Completed", "")},
+                  Patch(colRequests, ThisItem, {LifecycleStatus: tgt});
+                  Collect(colHistory, {RequestID: ThisItem.RequestID, At: Now(), By: User().FullName, What: "Moved to " & tgt})
+              )
+      - btnCardOpenBacklog:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Text: ="Open"
+            Size: =9
+            Fill: =RGBA(255, 255, 255, 1)
+            Color: =RGBA(0, 120, 212, 1)
+            BorderColor: =RGBA(0, 120, 212, 1)
+            BorderThickness: =1
+            Tooltip: ="Open " & ThisItem.Title
+            X: =178
+            Y: =108
+            Width: =60
+            Height: =30
+            OnSelect: =Set(varSelID, ThisItem.RequestID); Set(varDrawer, true); Set(varDecErr, false); Reset(txtReason); Reset(ddDecision); Reset(ddSA); Reset(ddBP); Reset(ddSV); Reset(ddCX); Reset(ddRR)
+- lblColDelivery:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="In Delivery (" & CountRows(galDelivery.AllItems) & ")"
+      Size: =10
+      Color: =RGBA(50, 49, 48, 1)
+      FontWeight: =FontWeight.Semibold
+      Fill: =RGBA(237, 235, 233, 1)
+      PaddingLeft: =10
+      X: =558
+      Y: =114
+      Width: =250
+      Height: =32
+- galDelivery:
+    Control: Gallery@2.15.0
+    Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+    Properties:
+      Items: =Sort(Filter(colRequests, LifecycleStatus = "In Delivery" && (IsBlank(txtSearch.Text) || txtSearch.Text in Title || txtSearch.Text in RequestID || txtSearch.Text in Department) && (ddCat.Selected.Value = "All benefit categories" || ExpectedBenefit = ddCat.Selected.Value) && (!tglFlagsOnly.Value || PersonalDataGDPR || FinancialData)), RequestID, SortOrder.Ascending)
+      TemplateSize: =150
+      TemplatePadding: =0
+      BorderColor: =RGBA(237, 235, 233, 1)
+      BorderThickness: =1
+      X: =558
+      Y: =146
+      Width: =250
+      Height: =614
+    Children:
+      - lblCardBgDelivery:
+          Control: Label@2.5.1
+          Properties:
+            Text: =""
+            Size: =11
+            Color: =RGBA(50, 49, 48, 1)
+            Fill: =If(ThisItem.DPIACheckStatus = "Hold", RGBA(255, 244, 230, 1), RGBA(250, 249, 248, 1))
+            PaddingLeft: =10
+            BorderColor: =RGBA(200, 198, 196, 1)
+            BorderThickness: =1
+            X: =4
+            Y: =4
+            Width: =Parent.TemplateWidth - 8
+            Height: =Parent.TemplateHeight - 8
+      - lblCardMetaDelivery:
+          Control: Label@2.5.1
+          Properties:
+            Text: =ThisItem.RequestID & " · " & ThisItem.ExpectedBenefit & " · " & ThisItem.Department
+            Size: =8
+            Color: =RGBA(96, 94, 92, 1)
+            X: =12
+            Y: =8
+            Width: =Parent.TemplateWidth - 24
+            Height: =18
+      - lblCardTitleDelivery:
+          Control: Label@2.5.1
+          Properties:
+            Text: =ThisItem.Title
+            Size: =10
+            Color: =RGBA(50, 49, 48, 1)
+            FontWeight: =FontWeight.Semibold
+            VerticalAlign: =VerticalAlign.Top
+            X: =12
+            Y: =26
+            Width: =Parent.TemplateWidth - 24
+            Height: =38
+      - lblCardBadgesDelivery:
+          Control: Label@2.5.1
+          Properties:
+            Text: |-
+              =Concat(Filter(Table({v: If(ThisItem.PersonalDataGDPR, "GDPR", "")}, {v: If(ThisItem.FinancialData, "Financial", "")}, {v: If(ThisItem.DPIACheckStatus = "Hold", "DPIA hold", If(ThisItem.DPIACheckStatus = "Approved", "DPIA approved", ""))}, {v: If(ThisItem.LifecycleStatus in ["Deferred", "Rejected", "Needs information"], ThisItem.LifecycleStatus, "")}, {v: If(ThisItem.IsSample, "Sample data", "")}), !IsBlank(v)), v, " · ")
+            Size: =8
+            Color: =RGBA(122, 65, 0, 1)
+            FontWeight: =FontWeight.Semibold
+            X: =12
+            Y: =64
+            Width: =Parent.TemplateWidth - 24
+            Height: =18
+      - lblCardPillDelivery:
+          Control: Label@2.5.1
+          Properties:
+            Text: =If(ThisItem.Scored, "Priority " & ThisItem.Priority & "/100 · " & ThisItem.Tier, "Not scored") & "   ·   " & Text(ThisItem.EstWeeklyHoursSaved * 52 * 25, "£#,##0") & " a year"
+            Size: =8
+            Color: =RGBA(50, 49, 48, 1)
+            X: =12
+            Y: =82
+            Width: =Parent.TemplateWidth - 24
+            Height: =18
+      - btnCardBackDelivery:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Text: ="← Back"
+            Size: =9
+            Fill: =RGBA(255, 255, 255, 1)
+            Color: =RGBA(0, 120, 212, 1)
+            BorderColor: =RGBA(0, 120, 212, 1)
+            BorderThickness: =1
+            X: =12
+            Y: =108
+            Width: =70
+            Height: =30
+            OnSelect: |-
+              =With(
+                  {tgt: Switch(ThisItem.LifecycleStatus, "Triaged/Backlog", "New Requests", "In Delivery", "Triaged/Backlog", "Completed", "In Delivery", "")},
+                  Patch(colRequests, ThisItem, {LifecycleStatus: tgt});
+                  Collect(colHistory, {RequestID: ThisItem.RequestID, At: Now(), By: User().FullName, What: "Moved to " & tgt})
+              )
+      - btnCardNextDelivery:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Text: =If(ThisItem.LifecycleStatus = "New Requests" && !ThisItem.Scored, "Score first", ThisItem.LifecycleStatus = "Triaged/Backlog" && ThisItem.DPIACheckStatus = "Hold", "DPIA hold", "Next →")
+            Size: =9
+            DisplayMode: =If(IsBlank(If(ThisItem.LifecycleStatus = "New Requests" && !ThisItem.Scored, ThisItem.RequestID & " needs triage scores before it can move to Triaged/Backlog.", ThisItem.LifecycleStatus = "Triaged/Backlog" && ThisItem.DPIACheckStatus = "Hold", ThisItem.RequestID & " is on DPIA hold. Record the DPIA approval before it moves into delivery.", "")), DisplayMode.Edit, DisplayMode.Disabled)
+            Tooltip: =If(IsBlank(If(ThisItem.LifecycleStatus = "New Requests" && !ThisItem.Scored, ThisItem.RequestID & " needs triage scores before it can move to Triaged/Backlog.", ThisItem.LifecycleStatus = "Triaged/Backlog" && ThisItem.DPIACheckStatus = "Hold", ThisItem.RequestID & " is on DPIA hold. Record the DPIA approval before it moves into delivery.", "")), "Move " & ThisItem.Title & " to " & Switch(ThisItem.LifecycleStatus, "New Requests", "Triaged/Backlog", "Triaged/Backlog", "In Delivery", "In Delivery", "Completed", ""), If(ThisItem.LifecycleStatus = "New Requests" && !ThisItem.Scored, ThisItem.RequestID & " needs triage scores before it can move to Triaged/Backlog.", ThisItem.LifecycleStatus = "Triaged/Backlog" && ThisItem.DPIACheckStatus = "Hold", ThisItem.RequestID & " is on DPIA hold. Record the DPIA approval before it moves into delivery.", ""))
+            X: =88
+            Y: =108
+            Width: =84
+            Height: =30
+            OnSelect: |-
+              =With(
+                  {tgt: Switch(ThisItem.LifecycleStatus, "New Requests", "Triaged/Backlog", "Triaged/Backlog", "In Delivery", "In Delivery", "Completed", "")},
+                  Patch(colRequests, ThisItem, {LifecycleStatus: tgt});
+                  Collect(colHistory, {RequestID: ThisItem.RequestID, At: Now(), By: User().FullName, What: "Moved to " & tgt})
+              )
+      - btnCardOpenDelivery:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Text: ="Open"
+            Size: =9
+            Fill: =RGBA(255, 255, 255, 1)
+            Color: =RGBA(0, 120, 212, 1)
+            BorderColor: =RGBA(0, 120, 212, 1)
+            BorderThickness: =1
+            Tooltip: ="Open " & ThisItem.Title
+            X: =178
+            Y: =108
+            Width: =60
+            Height: =30
+            OnSelect: =Set(varSelID, ThisItem.RequestID); Set(varDrawer, true); Set(varDecErr, false); Reset(txtReason); Reset(ddDecision); Reset(ddSA); Reset(ddBP); Reset(ddSV); Reset(ddCX); Reset(ddRR)
+- lblColDone:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Completed (" & CountRows(galDone.AllItems) & ")"
+      Size: =10
+      Color: =RGBA(50, 49, 48, 1)
+      FontWeight: =FontWeight.Semibold
+      Fill: =RGBA(237, 235, 233, 1)
+      PaddingLeft: =10
+      X: =817
+      Y: =114
+      Width: =250
+      Height: =32
+- galDone:
+    Control: Gallery@2.15.0
+    Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+    Properties:
+      Items: =Sort(Filter(colRequests, LifecycleStatus = "Completed" && (IsBlank(txtSearch.Text) || txtSearch.Text in Title || txtSearch.Text in RequestID || txtSearch.Text in Department) && (ddCat.Selected.Value = "All benefit categories" || ExpectedBenefit = ddCat.Selected.Value) && (!tglFlagsOnly.Value || PersonalDataGDPR || FinancialData)), RequestID, SortOrder.Ascending)
+      TemplateSize: =150
+      TemplatePadding: =0
+      BorderColor: =RGBA(237, 235, 233, 1)
+      BorderThickness: =1
+      X: =817
+      Y: =146
+      Width: =250
+      Height: =614
+    Children:
+      - lblCardBgDone:
+          Control: Label@2.5.1
+          Properties:
+            Text: =""
+            Size: =11
+            Color: =RGBA(50, 49, 48, 1)
+            Fill: =If(ThisItem.DPIACheckStatus = "Hold", RGBA(255, 244, 230, 1), RGBA(250, 249, 248, 1))
+            PaddingLeft: =10
+            BorderColor: =RGBA(200, 198, 196, 1)
+            BorderThickness: =1
+            X: =4
+            Y: =4
+            Width: =Parent.TemplateWidth - 8
+            Height: =Parent.TemplateHeight - 8
+      - lblCardMetaDone:
+          Control: Label@2.5.1
+          Properties:
+            Text: =ThisItem.RequestID & " · " & ThisItem.ExpectedBenefit & " · " & ThisItem.Department
+            Size: =8
+            Color: =RGBA(96, 94, 92, 1)
+            X: =12
+            Y: =8
+            Width: =Parent.TemplateWidth - 24
+            Height: =18
+      - lblCardTitleDone:
+          Control: Label@2.5.1
+          Properties:
+            Text: =ThisItem.Title
+            Size: =10
+            Color: =RGBA(50, 49, 48, 1)
+            FontWeight: =FontWeight.Semibold
+            VerticalAlign: =VerticalAlign.Top
+            X: =12
+            Y: =26
+            Width: =Parent.TemplateWidth - 24
+            Height: =38
+      - lblCardBadgesDone:
+          Control: Label@2.5.1
+          Properties:
+            Text: |-
+              =Concat(Filter(Table({v: If(ThisItem.PersonalDataGDPR, "GDPR", "")}, {v: If(ThisItem.FinancialData, "Financial", "")}, {v: If(ThisItem.DPIACheckStatus = "Hold", "DPIA hold", If(ThisItem.DPIACheckStatus = "Approved", "DPIA approved", ""))}, {v: If(ThisItem.LifecycleStatus in ["Deferred", "Rejected", "Needs information"], ThisItem.LifecycleStatus, "")}, {v: If(ThisItem.IsSample, "Sample data", "")}), !IsBlank(v)), v, " · ")
+            Size: =8
+            Color: =RGBA(122, 65, 0, 1)
+            FontWeight: =FontWeight.Semibold
+            X: =12
+            Y: =64
+            Width: =Parent.TemplateWidth - 24
+            Height: =18
+      - lblCardPillDone:
+          Control: Label@2.5.1
+          Properties:
+            Text: =If(ThisItem.Scored, "Priority " & ThisItem.Priority & "/100 · " & ThisItem.Tier, "Not scored") & "   ·   " & Text(ThisItem.EstWeeklyHoursSaved * 52 * 25, "£#,##0") & " a year"
+            Size: =8
+            Color: =RGBA(50, 49, 48, 1)
+            X: =12
+            Y: =82
+            Width: =Parent.TemplateWidth - 24
+            Height: =18
+      - btnCardBackDone:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Text: ="← Back"
+            Size: =9
+            Fill: =RGBA(255, 255, 255, 1)
+            Color: =RGBA(0, 120, 212, 1)
+            BorderColor: =RGBA(0, 120, 212, 1)
+            BorderThickness: =1
+            X: =12
+            Y: =108
+            Width: =70
+            Height: =30
+            OnSelect: |-
+              =With(
+                  {tgt: Switch(ThisItem.LifecycleStatus, "Triaged/Backlog", "New Requests", "In Delivery", "Triaged/Backlog", "Completed", "In Delivery", "")},
+                  Patch(colRequests, ThisItem, {LifecycleStatus: tgt});
+                  Collect(colHistory, {RequestID: ThisItem.RequestID, At: Now(), By: User().FullName, What: "Moved to " & tgt})
+              )
+      - btnCardOpenDone:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Text: ="Open"
+            Size: =9
+            Fill: =RGBA(255, 255, 255, 1)
+            Color: =RGBA(0, 120, 212, 1)
+            BorderColor: =RGBA(0, 120, 212, 1)
+            BorderThickness: =1
+            Tooltip: ="Open " & ThisItem.Title
+            X: =178
+            Y: =108
+            Width: =60
+            Height: =30
+            OnSelect: =Set(varSelID, ThisItem.RequestID); Set(varDrawer, true); Set(varDecErr, false); Reset(txtReason); Reset(ddDecision); Reset(ddSA); Reset(ddBP); Reset(ddSV); Reset(ddCX); Reset(ddRR)
+- lblColParked:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Deferred / Rejected / Needs info (" & CountRows(galParked.AllItems) & ")"
+      Size: =10
+      Color: =RGBA(50, 49, 48, 1)
+      FontWeight: =FontWeight.Semibold
+      Fill: =RGBA(237, 235, 233, 1)
+      PaddingLeft: =10
+      X: =1076
+      Y: =114
+      Width: =250
+      Height: =32
+- galParked:
+    Control: Gallery@2.15.0
+    Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+    Properties:
+      Items: =Sort(Filter(colRequests, LifecycleStatus in ["Deferred", "Rejected", "Needs information"] && (IsBlank(txtSearch.Text) || txtSearch.Text in Title || txtSearch.Text in RequestID || txtSearch.Text in Department) && (ddCat.Selected.Value = "All benefit categories" || ExpectedBenefit = ddCat.Selected.Value) && (!tglFlagsOnly.Value || PersonalDataGDPR || FinancialData)), RequestID, SortOrder.Ascending)
+      TemplateSize: =150
+      TemplatePadding: =0
+      BorderColor: =RGBA(237, 235, 233, 1)
+      BorderThickness: =1
+      X: =1076
+      Y: =146
+      Width: =250
+      Height: =614
+    Children:
+      - lblCardBgParked:
+          Control: Label@2.5.1
+          Properties:
+            Text: =""
+            Size: =11
+            Color: =RGBA(50, 49, 48, 1)
+            Fill: =If(ThisItem.DPIACheckStatus = "Hold", RGBA(255, 244, 230, 1), RGBA(250, 249, 248, 1))
+            PaddingLeft: =10
+            BorderColor: =RGBA(200, 198, 196, 1)
+            BorderThickness: =1
+            X: =4
+            Y: =4
+            Width: =Parent.TemplateWidth - 8
+            Height: =Parent.TemplateHeight - 8
+      - lblCardMetaParked:
+          Control: Label@2.5.1
+          Properties:
+            Text: =ThisItem.RequestID & " · " & ThisItem.ExpectedBenefit & " · " & ThisItem.Department
+            Size: =8
+            Color: =RGBA(96, 94, 92, 1)
+            X: =12
+            Y: =8
+            Width: =Parent.TemplateWidth - 24
+            Height: =18
+      - lblCardTitleParked:
+          Control: Label@2.5.1
+          Properties:
+            Text: =ThisItem.Title
+            Size: =10
+            Color: =RGBA(50, 49, 48, 1)
+            FontWeight: =FontWeight.Semibold
+            VerticalAlign: =VerticalAlign.Top
+            X: =12
+            Y: =26
+            Width: =Parent.TemplateWidth - 24
+            Height: =38
+      - lblCardBadgesParked:
+          Control: Label@2.5.1
+          Properties:
+            Text: |-
+              =Concat(Filter(Table({v: If(ThisItem.PersonalDataGDPR, "GDPR", "")}, {v: If(ThisItem.FinancialData, "Financial", "")}, {v: If(ThisItem.DPIACheckStatus = "Hold", "DPIA hold", If(ThisItem.DPIACheckStatus = "Approved", "DPIA approved", ""))}, {v: If(ThisItem.LifecycleStatus in ["Deferred", "Rejected", "Needs information"], ThisItem.LifecycleStatus, "")}, {v: If(ThisItem.IsSample, "Sample data", "")}), !IsBlank(v)), v, " · ")
+            Size: =8
+            Color: =RGBA(122, 65, 0, 1)
+            FontWeight: =FontWeight.Semibold
+            X: =12
+            Y: =64
+            Width: =Parent.TemplateWidth - 24
+            Height: =18
+      - lblCardPillParked:
+          Control: Label@2.5.1
+          Properties:
+            Text: =If(ThisItem.Scored, "Priority " & ThisItem.Priority & "/100 · " & ThisItem.Tier, "Not scored") & "   ·   " & Text(ThisItem.EstWeeklyHoursSaved * 52 * 25, "£#,##0") & " a year"
+            Size: =8
+            Color: =RGBA(50, 49, 48, 1)
+            X: =12
+            Y: =82
+            Width: =Parent.TemplateWidth - 24
+            Height: =18
+      - btnCardReopenParked:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Text: ="Reopen"
+            Size: =9
+            Fill: =RGBA(255, 255, 255, 1)
+            Color: =RGBA(0, 120, 212, 1)
+            BorderColor: =RGBA(0, 120, 212, 1)
+            BorderThickness: =1
+            X: =12
+            Y: =108
+            Width: =90
+            Height: =30
+            OnSelect: |-
+              =With(
+                  {tgt: If(ThisItem.Scored, "Triaged/Backlog", "New Requests")},
+                  Patch(colRequests, ThisItem, {LifecycleStatus: tgt, DecisionReason: ""});
+                  Collect(colHistory, {RequestID: ThisItem.RequestID, At: Now(), By: User().FullName, What: "Moved to " & tgt})
+              )
+      - btnCardOpenParked:
+          Control: Classic/Button@2.2.0
+          Properties:
+            Text: ="Open"
+            Size: =9
+            Fill: =RGBA(255, 255, 255, 1)
+            Color: =RGBA(0, 120, 212, 1)
+            BorderColor: =RGBA(0, 120, 212, 1)
+            BorderThickness: =1
+            Tooltip: ="Open " & ThisItem.Title
+            X: =178
+            Y: =108
+            Width: =60
+            Height: =30
+            OnSelect: =Set(varSelID, ThisItem.RequestID); Set(varDrawer, true); Set(varDecErr, false); Reset(txtReason); Reset(ddDecision); Reset(ddSA); Reset(ddBP); Reset(ddSV); Reset(ddCX); Reset(ddRR)
+- lblDrawerBg:
+    Control: Label@2.5.1
+    Properties:
+      Text: =""
+      Size: =11
+      Color: =RGBA(50, 49, 48, 1)
+      Fill: =RGBA(255, 255, 255, 1)
+      PaddingLeft: =10
+      Visible: =varDrawer
+      BorderColor: =RGBA(138, 136, 134, 1)
+      BorderThickness: =1
+      X: =846
+      Y: =0
+      Width: =520
+      Height: =768
+- lblDrawerRef:
+    Control: Label@2.5.1
+    Properties:
+      Text: =LookUp(colRequests, RequestID = varSelID).RequestID & " · " & LookUp(colRequests, RequestID = varSelID).LifecycleStatus & If(LookUp(colRequests, RequestID = varSelID).IsSample, " · Sample data", "")
+      Size: =10
+      Color: =RGBA(96, 94, 92, 1)
+      Visible: =varDrawer
+      X: =862
+      Y: =10
+      Width: =440
+      Height: =20
+- lblDrawerTitle:
+    Control: Label@2.5.1
+    Properties:
+      Text: =LookUp(colRequests, RequestID = varSelID).Title
+      Size: =13
+      Color: =RGBA(50, 49, 48, 1)
+      FontWeight: =FontWeight.Semibold
+      Visible: =varDrawer
+      VerticalAlign: =VerticalAlign.Top
+      X: =862
+      Y: =30
+      Width: =440
+      Height: =40
+- btnDrawerClose:
+    Control: Classic/Button@2.2.0
+    Properties:
+      Text: ="×"
+      Size: =14
+      Fill: =RGBA(255, 255, 255, 1)
+      Color: =RGBA(0, 120, 212, 1)
+      BorderColor: =RGBA(0, 120, 212, 1)
+      BorderThickness: =1
+      Visible: =varDrawer
+      Tooltip: ="Close"
+      X: =1316
+      Y: =10
+      Width: =40
+      Height: =36
+      OnSelect: =Set(varDrawer, false)
+- lblDrawerDetails:
+    Control: Label@2.5.1
+    Properties:
+      Text: |-
+        ="Department: " & LookUp(colRequests, RequestID = varSelID).Department & Char(10) & "Business owner: " & LookUp(colRequests, RequestID = varSelID).BusinessOwner & Char(10) & "Route: " & LookUp(colRequests, RequestID = varSelID).Route & Char(10) & "Current tools: " & LookUp(colRequests, RequestID = varSelID).CurrentTools & Char(10) & "Staff hours saved per week: " & LookUp(colRequests, RequestID = varSelID).EstWeeklyHoursSaved & "  (about " & Text(LookUp(colRequests, RequestID = varSelID).EstWeeklyHoursSaved * 52 * 25, "£#,##0") & " a year at £25 an hour)" & Char(10) & "Expected benefit: " & LookUp(colRequests, RequestID = varSelID).ExpectedBenefit & Char(10) & "Personal data (GDPR): " & If(LookUp(colRequests, RequestID = varSelID).PersonalDataGDPR, "Yes", "No") & "   Financial data: " & If(LookUp(colRequests, RequestID = varSelID).FinancialData, "Yes", "No") & Char(10) & "Current process: " & LookUp(colRequests, RequestID = varSelID).ProcessDescription & Char(10) & "Pain points: " & LookUp(colRequests, RequestID = varSelID).PainPoints
+      Size: =9
+      Color: =RGBA(50, 49, 48, 1)
+      Fill: =RGBA(243, 242, 241, 1)
+      PaddingLeft: =10
+      Visible: =varDrawer
+      VerticalAlign: =VerticalAlign.Top
+      Overflow: =Overflow.Scroll
+      PaddingTop: =4
+      X: =862
+      Y: =72
+      Width: =488
+      Height: =118
+- lblTriageHead:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Triage scores"
+      Size: =11
+      Color: =RGBA(50, 49, 48, 1)
+      FontWeight: =FontWeight.Semibold
+      Visible: =varDrawer
+      X: =862
+      Y: =194
+      Width: =488
+      Height: =20
+- lblTriageHint:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Score each PID criterion from 1 to 5. Complexity and resources lower the priority."
+      Size: =9
+      Color: =RGBA(96, 94, 92, 1)
+      Visible: =varDrawer
+      X: =862
+      Y: =214
+      Width: =488
+      Height: =18
+- lblCritSA:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Strategic alignment  (1 = weak fit, 5 = direct fit with LSBU strategy)"
+      Size: =9
+      Color: =RGBA(50, 49, 48, 1)
+      Visible: =varDrawer
+      X: =862
+      Y: =236
+      Width: =380
+      Height: =28
+- ddSA:
+    Control: Classic/DropDown@2.3.1
+    Properties:
+      Items: =["1", "2", "3", "4", "5"]
+      AllowEmptySelection: =true
+      Default: =If(LookUp(colRequests, RequestID = varSelID).Scored, Text(LookUp(colRequests, RequestID = varSelID).SA), Blank())
+      AccessibleLabel: ="Strategic alignment"
+      Size: =10
+      Visible: =varDrawer
+      X: =1250
+      Y: =236
+      Width: =100
+      Height: =28
+- lblCritBP:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Benefit potential  (1 = small gain, 5 = large gain)"
+      Size: =9
+      Color: =RGBA(50, 49, 48, 1)
+      Visible: =varDrawer
+      X: =862
+      Y: =266
+      Width: =380
+      Height: =28
+- ddBP:
+    Control: Classic/DropDown@2.3.1
+    Properties:
+      Items: =["1", "2", "3", "4", "5"]
+      AllowEmptySelection: =true
+      Default: =If(LookUp(colRequests, RequestID = varSelID).Scored, Text(LookUp(colRequests, RequestID = varSelID).BP), Blank())
+      AccessibleLabel: ="Benefit potential"
+      Size: =10
+      Visible: =varDrawer
+      X: =1250
+      Y: =266
+      Width: =100
+      Height: =28
+- lblCritSV:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Speed to value  (1 = months, 5 = days or weeks)"
+      Size: =9
+      Color: =RGBA(50, 49, 48, 1)
+      Visible: =varDrawer
+      X: =862
+      Y: =296
+      Width: =380
+      Height: =28
+- ddSV:
+    Control: Classic/DropDown@2.3.1
+    Properties:
+      Items: =["1", "2", "3", "4", "5"]
+      AllowEmptySelection: =true
+      Default: =If(LookUp(colRequests, RequestID = varSelID).Scored, Text(LookUp(colRequests, RequestID = varSelID).SV), Blank())
+      AccessibleLabel: ="Speed to value"
+      Size: =10
+      Visible: =varDrawer
+      X: =1250
+      Y: =296
+      Width: =100
+      Height: =28
+- lblCritCX:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Complexity  (1 = simple, 5 = very complex (lowers priority))"
+      Size: =9
+      Color: =RGBA(50, 49, 48, 1)
+      Visible: =varDrawer
+      X: =862
+      Y: =326
+      Width: =380
+      Height: =28
+- ddCX:
+    Control: Classic/DropDown@2.3.1
+    Properties:
+      Items: =["1", "2", "3", "4", "5"]
+      AllowEmptySelection: =true
+      Default: =If(LookUp(colRequests, RequestID = varSelID).Scored, Text(LookUp(colRequests, RequestID = varSelID).CX), Blank())
+      AccessibleLabel: ="Complexity"
+      Size: =10
+      Visible: =varDrawer
+      X: =1250
+      Y: =326
+      Width: =100
+      Height: =28
+- lblCritRR:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Resource requirement  (1 = minimal, 5 = heavy (lowers priority))"
+      Size: =9
+      Color: =RGBA(50, 49, 48, 1)
+      Visible: =varDrawer
+      X: =862
+      Y: =356
+      Width: =380
+      Height: =28
+- ddRR:
+    Control: Classic/DropDown@2.3.1
+    Properties:
+      Items: =["1", "2", "3", "4", "5"]
+      AllowEmptySelection: =true
+      Default: =If(LookUp(colRequests, RequestID = varSelID).Scored, Text(LookUp(colRequests, RequestID = varSelID).RR), Blank())
+      AccessibleLabel: ="Resource requirement"
+      Size: =10
+      Visible: =varDrawer
+      X: =1250
+      Y: =356
+      Width: =100
+      Height: =28
+- lblPriorityPreview:
+    Control: Label@2.5.1
+    Properties:
+      Text: |-
+        =If(!IsBlank(ddSA.Selected.Value) && !IsBlank(ddBP.Selected.Value) && !IsBlank(ddSV.Selected.Value) && !IsBlank(ddCX.Selected.Value) && !IsBlank(ddRR.Selected.Value), With({p: Round((30 * (Value(ddSA.Selected.Value) - 1) + 25 * (Value(ddBP.Selected.Value) - 1) + 15 * (Value(ddSV.Selected.Value) - 1) + 15 * (5 - Value(ddCX.Selected.Value)) + 15 * (5 - Value(ddRR.Selected.Value))) / 4, 0)}, "Priority " & p & "/100 · " & If(p >= 75, "High", p >= 50, "Medium", "Low")), "Choose a score for every criterion")
+      Size: =10
+      Color: =RGBA(50, 49, 48, 1)
+      FontWeight: =FontWeight.Semibold
+      Visible: =varDrawer
+      X: =862
+      Y: =390
+      Width: =300
+      Height: =26
+- btnSaveTriage:
+    Control: Classic/Button@2.2.0
+    Properties:
+      Text: ="Save triage scores"
+      Size: =10
+      Visible: =varDrawer
+      DisplayMode: =If(!IsBlank(ddSA.Selected.Value) && !IsBlank(ddBP.Selected.Value) && !IsBlank(ddSV.Selected.Value) && !IsBlank(ddCX.Selected.Value) && !IsBlank(ddRR.Selected.Value), DisplayMode.Edit, DisplayMode.Disabled)
+      X: =1170
+      Y: =388
+      Width: =180
+      Height: =30
+      OnSelect: |-
+        =With(
+            {p: Round((30 * (Value(ddSA.Selected.Value) - 1) + 25 * (Value(ddBP.Selected.Value) - 1) + 15 * (Value(ddSV.Selected.Value) - 1) + 15 * (5 - Value(ddCX.Selected.Value)) + 15 * (5 - Value(ddRR.Selected.Value))) / 4, 0)},
+            With(
+                {tier: If(p >= 75, "High", p >= 50, "Medium", "Low")},
+                Patch(
+                    colRequests,
+                    LookUp(colRequests, RequestID = varSelID),
+                    {Scored: true, SA: Value(ddSA.Selected.Value), BP: Value(ddBP.Selected.Value), SV: Value(ddSV.Selected.Value), CX: Value(ddCX.Selected.Value), RR: Value(ddRR.Selected.Value), Priority: p, Tier: tier}
+                );
+                Collect(colHistory, {RequestID: varSelID, At: Now(), By: User().FullName, What: "Triage scores saved: " & p & "/100 (" & tier & ")"})
+            )
+        )
+- lblScoreHow:
+    Control: Label@2.5.1
+    Properties:
+      Text: |-
+        ="How the score works: Strategic alignment 30%, Benefit potential 25%, Speed to value 15%, Complexity 15% and Resource requirement 15% (the last two inverted), giving 0 to 100. High is 75 or more, Medium 50 to 74, Low below 50. The score supports the decision; a person still makes it."
+      Size: =8
+      Color: =RGBA(96, 94, 92, 1)
+      Visible: =varDrawer
+      VerticalAlign: =VerticalAlign.Top
+      X: =862
+      Y: =420
+      Width: =488
+      Height: =42
+- lblDPIAState:
+    Control: Label@2.5.1
+    Properties:
+      Text: |-
+        ="DPIA check: " & Switch(LookUp(colRequests, RequestID = varSelID).DPIACheckStatus, "Hold", "on hold", "Approved", "approved", "not required")
+      Size: =10
+      Color: =If(LookUp(colRequests, RequestID = varSelID).DPIACheckStatus = "Hold", RGBA(122, 65, 0, 1), RGBA(16, 124, 16, 1))
+      FontWeight: =FontWeight.Semibold
+      Visible: =varDrawer
+      X: =862
+      Y: =464
+      Width: =320
+      Height: =28
+- btnApproveDPIA:
+    Control: Classic/Button@2.2.0
+    Properties:
+      Text: ="Record DPIA approval"
+      Size: =10
+      Visible: =varDrawer && LookUp(colRequests, RequestID = varSelID).DPIACheckStatus = "Hold"
+      X: =1170
+      Y: =464
+      Width: =180
+      Height: =28
+      OnSelect: |-
+        =Patch(colRequests, LookUp(colRequests, RequestID = varSelID), {DPIACheckStatus: "Approved"});
+        Collect(colHistory, {RequestID: varSelID, At: Now(), By: User().FullName, What: "DPIA approval recorded"})
+- lblDecisionHead:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Defer, reject or ask for more information"
+      Size: =11
+      Color: =RGBA(50, 49, 48, 1)
+      FontWeight: =FontWeight.Semibold
+      Visible: =varDrawer
+      X: =862
+      Y: =498
+      Width: =488
+      Height: =20
+- ddDecision:
+    Control: Classic/DropDown@2.3.1
+    Properties:
+      Items: =["Defer", "Reject", "Needs more information"]
+      AllowEmptySelection: =true
+      Default: =Blank()
+      AccessibleLabel: ="Decision"
+      Size: =11
+      Visible: =varDrawer
+      X: =862
+      Y: =520
+      Width: =240
+      Height: =30
+- btnConfirmDecision:
+    Control: Classic/Button@2.2.0
+    Properties:
+      Text: ="Confirm decision"
+      Size: =10
+      Visible: =varDrawer
+      X: =1170
+      Y: =520
+      Width: =180
+      Height: =30
+      OnSelect: |-
+        =If(
+            IsBlank(ddDecision.Selected.Value) || Len(Trim(txtReason.Text)) < 10,
+            Set(varDecErr, true),
+            With(
+                {st: Switch(ddDecision.Selected.Value, "Defer", "Deferred", "Reject", "Rejected", "Needs information")},
+                Patch(colRequests, LookUp(colRequests, RequestID = varSelID), {LifecycleStatus: st, DecisionReason: Trim(txtReason.Text)});
+                Collect(colHistory, {RequestID: varSelID, At: Now(), By: User().FullName, What: st & ". Reason: " & Trim(txtReason.Text)})
+            );
+            Set(varDecErr, false);
+            Reset(txtReason);
+            Reset(ddDecision)
+        )
+- txtReason:
+    Control: Classic/TextInput@2.3.2
+    Properties:
+      Default: =""
+      Mode: =TextMode.MultiLine
+      HintText: ="Reason for the decision. The requester will see this. Keep it plain and specific."
+      AccessibleLabel: ="Reason for the decision"
+      Size: =10
+      BorderColor: =If(varDecErr && Len(Trim(txtReason.Text)) < 10, RGBA(168, 0, 0, 1), RGBA(96, 94, 92, 1))
+      Visible: =varDrawer
+      X: =862
+      Y: =554
+      Width: =488
+      Height: =44
+- lblDecisionErr:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Choose a decision and enter the reason (at least 10 characters)."
+      Size: =9
+      Color: =RGBA(168, 0, 0, 1)
+      FontWeight: =FontWeight.Semibold
+      Visible: =varDrawer && varDecErr
+      Live: =Live.Assertive
+      X: =862
+      Y: =600
+      Width: =488
+      Height: =18
+- lblHistHead:
+    Control: Label@2.5.1
+    Properties:
+      Text: |-
+        ="History: every change records who made it and when"
+      Size: =10
+      Color: =RGBA(50, 49, 48, 1)
+      FontWeight: =FontWeight.Semibold
+      Visible: =varDrawer
+      X: =862
+      Y: =620
+      Width: =488
+      Height: =20
+- galHistory:
+    Control: Gallery@2.15.0
+    Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+    Properties:
+      Items: =Sort(Filter(colHistory, RequestID = varSelID), At, SortOrder.Descending)
+      TemplateSize: =22
+      TemplatePadding: =0
+      Visible: =varDrawer
+      X: =862
+      Y: =642
+      Width: =488
+      Height: =118
+    Children:
+      - lblHistRow:
+          Control: Label@2.5.1
+          Properties:
+            Text: =Text(ThisItem.At, "d mmm yyyy hh:mm") & "  ·  " & ThisItem.What & "  ·  " & ThisItem.By
+            Size: =8
+            Color: =RGBA(50, 49, 48, 1)
+            X: =4
+            Y: =0
+            Width: =Parent.TemplateWidth - 8
+            Height: =22

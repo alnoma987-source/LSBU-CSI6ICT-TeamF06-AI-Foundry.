@@ -1,0 +1,798 @@
+- lblHeader:
+    Control: Label@2.5.1
+    Properties:
+      Text: =Switch(locView, "done", "Request submitted", "mine", "My requests", "Submit an opportunity")
+      Size: =20
+      Color: =RGBA(50, 49, 48, 1)
+      FontWeight: =FontWeight.Semibold
+      X: =40
+      Y: =8
+      Width: =640
+      Height: =36
+- lblViewingAs:
+    Control: Label@2.5.1
+    Properties:
+      Text: |-
+        ="Viewing as: Requester"
+      Size: =10
+      Color: =RGBA(96, 94, 92, 1)
+      X: =690
+      Y: =14
+      Width: =260
+      Height: =24
+- btnMyRequests:
+    Control: Classic/Button@2.2.0
+    Properties:
+      Text: ="My requests"
+      Size: =11
+      Fill: =RGBA(255, 255, 255, 1)
+      Color: =RGBA(0, 120, 212, 1)
+      BorderColor: =RGBA(0, 120, 212, 1)
+      BorderThickness: =1
+      X: =960
+      Y: =10
+      Width: =150
+      Height: =34
+      OnSelect: |-
+        =UpdateContext({locView: "mine"})
+- btnToPipeline:
+    Control: Classic/Button@2.2.0
+    Properties:
+      Text: ="Digital PM view"
+      Size: =11
+      Fill: =RGBA(255, 255, 255, 1)
+      Color: =RGBA(0, 120, 212, 1)
+      BorderColor: =RGBA(0, 120, 212, 1)
+      BorderThickness: =1
+      X: =1120
+      Y: =10
+      Width: =206
+      Height: =34
+      OnSelect: =Navigate(scrPipeline, ScreenTransition.None)
+- lblTestBanner:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Test data only. Do not enter real personal, student, staff or financial information anywhere in this app."
+      Size: =10
+      Color: =RGBA(50, 49, 48, 1)
+      Fill: =RGBA(255, 244, 206, 1)
+      PaddingLeft: =10
+      X: =40
+      Y: =50
+      Width: =1286
+      Height: =28
+- lblIntro:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Tell us about a manual or spreadsheet task that AI could make easier. No technical knowledge needed. It takes under 5 minutes. Every question is required. The data switches start at No."
+      Size: =10
+      Color: =RGBA(96, 94, 92, 1)
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =40
+      Y: =82
+      Width: =1286
+      Height: =24
+- lblTitle:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Request title"
+      Size: =11
+      Color: =RGBA(50, 49, 48, 1)
+      FontWeight: =FontWeight.Semibold
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =40
+      Y: =112
+      Width: =600
+      Height: =20
+- lblTitleHint:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="A short name for what you want to improve."
+      Size: =9
+      Color: =RGBA(96, 94, 92, 1)
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =40
+      Y: =132
+      Width: =600
+      Height: =18
+- txtTitle:
+    Control: Classic/TextInput@2.3.2
+    Properties:
+      Default: =""
+      HintText: ="e.g. Automate room booking confirmations"
+      AccessibleLabel: ="Request title"
+      Size: =11
+      BorderColor: =If(locShowErrors && ((IsBlank(Trim(txtTitle.Text)))), RGBA(168, 0, 0, 1), RGBA(96, 94, 92, 1))
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =40
+      Y: =152
+      Width: =600
+      Height: =34
+- lblDepartment:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Department or directorate"
+      Size: =11
+      Color: =RGBA(50, 49, 48, 1)
+      FontWeight: =FontWeight.Semibold
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =40
+      Y: =196
+      Width: =600
+      Height: =20
+- lblDepartmentHint:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="The team the work happens in."
+      Size: =9
+      Color: =RGBA(96, 94, 92, 1)
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =40
+      Y: =216
+      Width: =600
+      Height: =18
+- ddDepartment:
+    Control: Classic/DropDown@2.3.1
+    Properties:
+      Items: =["Estates and Facilities", "Finance", "Human Resources", "IT Services", "Legal Services", "Procurement", "Registry", "Library and Learning Resources", "Marketing and Recruitment", "Student Services", "Academic school or institute", "Research and enterprise", "Other"]
+      AllowEmptySelection: =true
+      Default: =Blank()
+      AccessibleLabel: ="Department or directorate"
+      Size: =11
+      BorderColor: =If(locShowErrors && ((IsBlank(ddDepartment.Selected.Value))), RGBA(168, 0, 0, 1), RGBA(96, 94, 92, 1))
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =40
+      Y: =236
+      Width: =600
+      Height: =34
+- lblBusinessOwner:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Business owner"
+      Size: =11
+      Color: =RGBA(50, 49, 48, 1)
+      FontWeight: =FontWeight.Semibold
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =40
+      Y: =280
+      Width: =600
+      Height: =20
+- lblBusinessOwnerHint:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="The named person who is responsible for this process and can approve changes to it. Use a test name."
+      Size: =9
+      Color: =RGBA(96, 94, 92, 1)
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =40
+      Y: =300
+      Width: =600
+      Height: =18
+- txtBusinessOwner:
+    Control: Classic/TextInput@2.3.2
+    Properties:
+      Default: =""
+      HintText: ="e.g. Test User (Head of Room Bookings)"
+      AccessibleLabel: ="Business owner"
+      Size: =11
+      BorderColor: =If(locShowErrors && ((IsBlank(Trim(txtBusinessOwner.Text)))), RGBA(168, 0, 0, 1), RGBA(96, 94, 92, 1))
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =40
+      Y: =320
+      Width: =600
+      Height: =34
+- lblRoute:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="How is this request coming in?"
+      Size: =11
+      Color: =RGBA(50, 49, 48, 1)
+      FontWeight: =FontWeight.Semibold
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =40
+      Y: =364
+      Width: =600
+      Height: =20
+- lblRouteHint:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Most people submit one request on their own."
+      Size: =9
+      Color: =RGBA(96, 94, 92, 1)
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =40
+      Y: =384
+      Width: =600
+      Height: =18
+- ddRoute:
+    Control: Classic/DropDown@2.3.1
+    Properties:
+      Items: =["Single staff request (Workstream 1)", "From a hackathon workshop (Workstream 2)"]
+      AllowEmptySelection: =false
+      Default: ="Single staff request (Workstream 1)"
+      AccessibleLabel: ="How is this request coming in?"
+      Size: =11
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =40
+      Y: =404
+      Width: =600
+      Height: =34
+- lblHoursSaved:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Estimated staff hours saved per week"
+      Size: =11
+      Color: =RGBA(50, 49, 48, 1)
+      FontWeight: =FontWeight.Semibold
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =40
+      Y: =448
+      Width: =600
+      Height: =20
+- lblHoursSavedHint:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="A best guess is fine, for example 4 or 2.5."
+      Size: =9
+      Color: =RGBA(96, 94, 92, 1)
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =40
+      Y: =468
+      Width: =600
+      Height: =18
+- txtHoursSaved:
+    Control: Classic/TextInput@2.3.2
+    Properties:
+      Default: =""
+      HintText: ="e.g. 4"
+      AccessibleLabel: ="Estimated staff hours saved per week"
+      Size: =11
+      Format: =TextFormat.Number
+      BorderColor: =If(locShowErrors && ((IsBlank(txtHoursSaved.Text) || Value(txtHoursSaved.Text) <= 0) || (!IsBlank(txtHoursSaved.Text) && Value(txtHoursSaved.Text) > 168)), RGBA(168, 0, 0, 1), RGBA(96, 94, 92, 1))
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =40
+      Y: =488
+      Width: =600
+      Height: =34
+- lblBenefit:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Expected benefit category"
+      Size: =11
+      Color: =RGBA(50, 49, 48, 1)
+      FontWeight: =FontWeight.Semibold
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =40
+      Y: =532
+      Width: =600
+      Height: =20
+- lblBenefitHint:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="The main thing you hope will improve."
+      Size: =9
+      Color: =RGBA(96, 94, 92, 1)
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =40
+      Y: =552
+      Width: =600
+      Height: =18
+- ddBenefit:
+    Control: Classic/DropDown@2.3.1
+    Properties:
+      Items: =["Save staff time (Efficiency)", "Save money or reduce costs (Financial)", "Better service for students or staff (Service)", "Fewer errors or less risk (Risk Reduction)", "Better data or reporting (Data)", "Supports university strategy (Strategic)"]
+      AllowEmptySelection: =true
+      Default: =Blank()
+      AccessibleLabel: ="Expected benefit category"
+      Size: =11
+      BorderColor: =If(locShowErrors && ((IsBlank(ddBenefit.Selected.Value))), RGBA(168, 0, 0, 1), RGBA(96, 94, 92, 1))
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =40
+      Y: =572
+      Width: =600
+      Height: =34
+- lblProcessDesc:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Current process description"
+      Size: =11
+      Color: =RGBA(50, 49, 48, 1)
+      FontWeight: =FontWeight.Semibold
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =680
+      Y: =112
+      Width: =646
+      Height: =20
+- lblProcessDescHint:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="What do you do today, step by step?"
+      Size: =9
+      Color: =RGBA(96, 94, 92, 1)
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =680
+      Y: =132
+      Width: =646
+      Height: =18
+- txtProcessDesc:
+    Control: Classic/TextInput@2.3.2
+    Properties:
+      Default: =""
+      HintText: ="Describe the current process…"
+      AccessibleLabel: ="Current process description"
+      Size: =11
+      Mode: =TextMode.MultiLine
+      BorderColor: =If(locShowErrors && ((IsBlank(Trim(txtProcessDesc.Text))) || (!IsBlank(Trim(txtProcessDesc.Text)) && Len(Trim(txtProcessDesc.Text)) < 20)), RGBA(168, 0, 0, 1), RGBA(96, 94, 92, 1))
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =680
+      Y: =152
+      Width: =646
+      Height: =64
+- lblCurrentTools:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Current tools used"
+      Size: =11
+      Color: =RGBA(50, 49, 48, 1)
+      FontWeight: =FontWeight.Semibold
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =680
+      Y: =226
+      Width: =646
+      Height: =20
+- lblCurrentToolsHint:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="The software or systems the process relies on today."
+      Size: =9
+      Color: =RGBA(96, 94, 92, 1)
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =680
+      Y: =246
+      Width: =646
+      Height: =18
+- txtCurrentTools:
+    Control: Classic/TextInput@2.3.2
+    Properties:
+      Default: =""
+      HintText: ="e.g. Excel, Outlook, SharePoint, paper forms"
+      AccessibleLabel: ="Current tools used"
+      Size: =11
+      BorderColor: =If(locShowErrors && ((IsBlank(Trim(txtCurrentTools.Text)))), RGBA(168, 0, 0, 1), RGBA(96, 94, 92, 1))
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =680
+      Y: =266
+      Width: =646
+      Height: =34
+- lblPainPoints:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Pain points"
+      Size: =11
+      Color: =RGBA(50, 49, 48, 1)
+      FontWeight: =FontWeight.Semibold
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =680
+      Y: =310
+      Width: =646
+      Height: =20
+- lblPainPointsHint:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="What goes wrong, takes too long or causes frustration?"
+      Size: =9
+      Color: =RGBA(96, 94, 92, 1)
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =680
+      Y: =330
+      Width: =646
+      Height: =18
+- txtPainPoints:
+    Control: Classic/TextInput@2.3.2
+    Properties:
+      Default: =""
+      HintText: ="e.g. Copying data by hand leads to typos and missed bookings…"
+      AccessibleLabel: ="Pain points"
+      Size: =11
+      Mode: =TextMode.MultiLine
+      BorderColor: =If(locShowErrors && ((IsBlank(Trim(txtPainPoints.Text)))), RGBA(168, 0, 0, 1), RGBA(96, 94, 92, 1))
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =680
+      Y: =350
+      Width: =646
+      Height: =64
+- lblDataLegend:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Data involved"
+      Size: =11
+      Color: =RGBA(50, 49, 48, 1)
+      FontWeight: =FontWeight.Semibold
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =680
+      Y: =424
+      Width: =646
+      Height: =20
+- lblDataHint:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Switch on anything that applies. If unsure, leave it off and the project manager will check."
+      Size: =9
+      Color: =RGBA(96, 94, 92, 1)
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =680
+      Y: =444
+      Width: =646
+      Height: =18
+- tglGDPR:
+    Control: Classic/Toggle@2.1.0
+    Properties:
+      Default: =false
+      TrueText: ="Yes"
+      FalseText: ="No"
+      AccessibleLabel: ="Personal data (GDPR)"
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =680
+      Y: =468
+      Width: =90
+      Height: =30
+- lblGDPR:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Personal data (GDPR)"
+      Size: =11
+      Color: =RGBA(50, 49, 48, 1)
+      FontWeight: =FontWeight.Semibold
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =776
+      Y: =464
+      Width: =550
+      Height: =20
+- lblGDPRDesc:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Information about identifiable people, such as students or staff."
+      Size: =9
+      Color: =RGBA(96, 94, 92, 1)
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =776
+      Y: =482
+      Width: =550
+      Height: =18
+- tglFinancial:
+    Control: Classic/Toggle@2.1.0
+    Properties:
+      Default: =false
+      TrueText: ="Yes"
+      FalseText: ="No"
+      AccessibleLabel: ="Financial data"
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =680
+      Y: =510
+      Width: =90
+      Height: =30
+- lblFinancial:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Financial data"
+      Size: =11
+      Color: =RGBA(50, 49, 48, 1)
+      FontWeight: =FontWeight.Semibold
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =776
+      Y: =506
+      Width: =550
+      Height: =20
+- lblFinancialDesc:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Payments, budgets, invoices or other money-related records."
+      Size: =9
+      Color: =RGBA(96, 94, 92, 1)
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =776
+      Y: =524
+      Width: =550
+      Height: =18
+- lblDPIAWarning:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="This request involves personal or financial data. It will be held for a data protection impact assessment (DPIA) before it can move into delivery."
+      Size: =10
+      Color: =RGBA(122, 65, 0, 1)
+      Fill: =RGBA(255, 237, 213, 1)
+      PaddingLeft: =10
+      Visible: =(IsBlank(locView) || locView = "form") && (tglGDPR.Value || tglFinancial.Value)
+      X: =680
+      Y: =550
+      Width: =646
+      Height: =48
+- btnSubmit:
+    Control: Classic/Button@2.2.0
+    Properties:
+      Text: ="Submit request"
+      Size: =11
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =680
+      Y: =610
+      Width: =180
+      Height: =40
+      OnSelect: |-
+        =If(
+            Len(lblErrorText.Text) > 0,
+            UpdateContext({locShowErrors: true}),
+            Set(varNewID, "AIF-2026-" & Text(Coalesce(Max(colRequests, Value(Right(RequestID, 3))), 0) + 1, "000"));
+            Collect(
+                colRequests,
+                {
+                    RequestID: varNewID,
+                    Title: Trim(txtTitle.Text),
+                    Department: ddDepartment.Selected.Value,
+                    BusinessOwner: Trim(txtBusinessOwner.Text),
+                    Route: ddRoute.Selected.Value,
+                    CurrentTools: Trim(txtCurrentTools.Text),
+                    ProcessDescription: Trim(txtProcessDesc.Text),
+                    PainPoints: Trim(txtPainPoints.Text),
+                    EstWeeklyHoursSaved: Value(txtHoursSaved.Text),
+                    ExpectedBenefit: Switch(ddBenefit.Selected.Value, "Save staff time (Efficiency)", "Efficiency", "Save money or reduce costs (Financial)", "Financial", "Better service for students or staff (Service)", "Service", "Fewer errors or less risk (Risk Reduction)", "Risk Reduction", "Better data or reporting (Data)", "Data", "Supports university strategy (Strategic)", "Strategic", ddBenefit.Selected.Value),
+                    PersonalDataGDPR: tglGDPR.Value,
+                    FinancialData: tglFinancial.Value,
+                    DPIACheckStatus: If(tglGDPR.Value || tglFinancial.Value, "Hold", "Not required"),
+                    LifecycleStatus: "New Requests",
+                    RequesterEmail: User().Email,
+                    SubmittedOn: Now(),
+                    Scored: false, SA: 0, BP: 0, SV: 0, CX: 0, RR: 0, Priority: 0, Tier: "",
+                    DecisionReason: "",
+                    IsSample: false
+                }
+            );
+            Collect(colHistory, {RequestID: varNewID, At: Now(), By: User().FullName, What: "Submitted"});
+            Set(varLast, LookUp(colRequests, RequestID = varNewID));
+            UpdateContext({locShowErrors: false, locView: "done"});
+            Reset(txtTitle); Reset(ddDepartment); Reset(txtBusinessOwner); Reset(ddRoute); Reset(txtProcessDesc); Reset(txtCurrentTools); Reset(txtPainPoints); Reset(txtHoursSaved); Reset(ddBenefit); Reset(tglGDPR); Reset(tglFinancial)
+        )
+- btnCancel:
+    Control: Classic/Button@2.2.0
+    Properties:
+      Text: ="Cancel"
+      Size: =11
+      Fill: =RGBA(255, 255, 255, 1)
+      Color: =RGBA(0, 120, 212, 1)
+      BorderColor: =RGBA(0, 120, 212, 1)
+      BorderThickness: =1
+      Visible: =(IsBlank(locView) || locView = "form")
+      X: =872
+      Y: =610
+      Width: =120
+      Height: =40
+      OnSelect: |-
+        =UpdateContext({locShowErrors: false});
+        Reset(txtTitle); Reset(ddDepartment); Reset(txtBusinessOwner); Reset(ddRoute); Reset(txtProcessDesc); Reset(txtCurrentTools); Reset(txtPainPoints); Reset(txtHoursSaved); Reset(ddBenefit); Reset(tglGDPR); Reset(tglFinancial)
+- lblErrorText:
+    Control: Label@2.5.1
+    Properties:
+      Text: =If(IsBlank(Trim(txtTitle.Text)), "• Enter a request title" & Char(10), "") & If(IsBlank(ddDepartment.Selected.Value), "• Select your department or directorate" & Char(10), "") & If(IsBlank(Trim(txtBusinessOwner.Text)), "• Enter the name of the business owner" & Char(10), "") & If(IsBlank(Trim(txtProcessDesc.Text)), "• Describe the current process" & Char(10), "") & If(!IsBlank(Trim(txtProcessDesc.Text)) && Len(Trim(txtProcessDesc.Text)) < 20, "• Describe the current process in a little more detail (at least 20 characters)" & Char(10), "") & If(IsBlank(Trim(txtCurrentTools.Text)), "• Enter the tools used today, for example Excel or Outlook" & Char(10), "") & If(IsBlank(Trim(txtPainPoints.Text)), "• Describe what goes wrong or takes too long today" & Char(10), "") & If(IsBlank(txtHoursSaved.Text) || Value(txtHoursSaved.Text) <= 0, "• Enter staff hours saved per week, more than 0" & Char(10), "") & If(!IsBlank(txtHoursSaved.Text) && Value(txtHoursSaved.Text) > 168, "• Enter staff hours saved per week, 168 or fewer" & Char(10), "") & If(IsBlank(ddBenefit.Selected.Value), "• Select the main benefit you expect" & Char(10), "")
+      Size: =9
+      Color: =RGBA(50, 49, 48, 1)
+      Visible: =false
+      X: =40
+      Y: =700
+      Width: =10
+      Height: =10
+- lblErrors:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="There is a problem" & Char(10) & lblErrorText.Text
+      Size: =10
+      Color: =RGBA(168, 0, 0, 1)
+      FontWeight: =FontWeight.Semibold
+      Fill: =RGBA(253, 231, 233, 1)
+      PaddingLeft: =10
+      Visible: =(IsBlank(locView) || locView = "form") && locShowErrors && Len(lblErrorText.Text) > 0
+      VerticalAlign: =VerticalAlign.Top
+      Overflow: =Overflow.Scroll
+      Live: =Live.Assertive
+      PaddingTop: =8
+      X: =40
+      Y: =616
+      Width: =600
+      Height: =144
+- lblConfRef:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Your reference number is " & varNewID
+      Size: =18
+      Color: =RGBA(16, 124, 16, 1)
+      FontWeight: =FontWeight.Semibold
+      Visible: =locView = "done"
+      Live: =Live.Polite
+      X: =40
+      Y: =112
+      Width: =800
+      Height: =40
+- lblConfKeep:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Keep this number. Quote it if you contact the AI Foundry team."
+      Size: =11
+      Color: =RGBA(50, 49, 48, 1)
+      Visible: =locView = "done"
+      X: =40
+      Y: =152
+      Width: =800
+      Height: =24
+- lblConfRecap:
+    Control: Label@2.5.1
+    Properties:
+      Text: |-
+        ="Request title: " & varLast.Title & Char(10) & "Department or directorate: " & varLast.Department & Char(10) & "Business owner: " & varLast.BusinessOwner & Char(10) & "Route: " & varLast.Route & Char(10) & "Current tools used: " & varLast.CurrentTools & Char(10) & "Staff hours saved per week: " & varLast.EstWeeklyHoursSaved & Char(10) & "Expected benefit: " & varLast.ExpectedBenefit & Char(10) & "Personal data (GDPR): " & If(varLast.PersonalDataGDPR, "Yes", "No") & Char(10) & "Financial data: " & If(varLast.FinancialData, "Yes", "No")
+      Size: =10
+      Color: =RGBA(50, 49, 48, 1)
+      Fill: =RGBA(243, 242, 241, 1)
+      PaddingLeft: =10
+      Visible: =locView = "done"
+      VerticalAlign: =VerticalAlign.Top
+      PaddingTop: =8
+      X: =40
+      Y: =188
+      Width: =620
+      Height: =230
+- lblConfNextHead:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="What happens next"
+      Size: =11
+      Color: =RGBA(50, 49, 48, 1)
+      FontWeight: =FontWeight.Semibold
+      Visible: =locView = "done"
+      X: =700
+      Y: =188
+      Width: =626
+      Height: =24
+- lblConfNext:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Your request is now at New Requests. The Digital Project Manager will review and score it, then move it into the pipeline. You can follow its status in My requests." & If(varLast.DPIACheckStatus = "Hold", " Because you flagged " & If(varLast.PersonalDataGDPR && varLast.FinancialData, "personal and financial", If(varLast.PersonalDataGDPR, "personal", "financial")) & " data, it will be held for a DPIA check before approval.", "")
+      Size: =11
+      Color: =RGBA(50, 49, 48, 1)
+      Visible: =locView = "done"
+      VerticalAlign: =VerticalAlign.Top
+      X: =700
+      Y: =214
+      Width: =626
+      Height: =96
+- lblConfNote:
+    Control: Label@2.5.1
+    Properties:
+      Text: |-
+        ="Prototype: requests are kept only while the app is open. The live build saves to the Opportunity_Intake SharePoint list."
+      Size: =10
+      Color: =RGBA(50, 49, 48, 1)
+      Fill: =RGBA(255, 244, 206, 1)
+      PaddingLeft: =10
+      Visible: =locView = "done"
+      X: =700
+      Y: =316
+      Width: =626
+      Height: =44
+- btnConfTrack:
+    Control: Classic/Button@2.2.0
+    Properties:
+      Text: ="Track my requests"
+      Size: =11
+      Visible: =locView = "done"
+      X: =700
+      Y: =372
+      Width: =200
+      Height: =40
+      OnSelect: |-
+        =UpdateContext({locView: "mine"})
+- btnConfAnother:
+    Control: Classic/Button@2.2.0
+    Properties:
+      Text: ="Submit another request"
+      Size: =11
+      Fill: =RGBA(255, 255, 255, 1)
+      Color: =RGBA(0, 120, 212, 1)
+      BorderColor: =RGBA(0, 120, 212, 1)
+      BorderThickness: =1
+      Visible: =locView = "done"
+      X: =912
+      Y: =372
+      Width: =220
+      Height: =40
+      OnSelect: |-
+        =UpdateContext({locView: "form"})
+- lblMineIntro:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="Requests you have submitted and where they are now."
+      Size: =10
+      Color: =RGBA(96, 94, 92, 1)
+      Visible: =locView = "mine"
+      X: =40
+      Y: =82
+      Width: =1286
+      Height: =24
+- galMine:
+    Control: Gallery@2.15.0
+    Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+    Properties:
+      Items: =Sort(Filter(colRequests, RequesterEmail = User().Email && !IsSample), SubmittedOn, SortOrder.Descending)
+      TemplateSize: =90
+      TemplatePadding: =0
+      BorderColor: =RGBA(237, 235, 233, 1)
+      BorderThickness: =1
+      Visible: =locView = "mine"
+      X: =40
+      Y: =112
+      Width: =900
+      Height: =560
+    Children:
+      - lblMineMeta:
+          Control: Label@2.5.1
+          Properties:
+            Text: =ThisItem.RequestID & "  ·  submitted " & Text(ThisItem.SubmittedOn, "d mmm yyyy")
+            Size: =9
+            Color: =RGBA(96, 94, 92, 1)
+            X: =12
+            Y: =6
+            Width: =860
+            Height: =18
+      - lblMineTitle:
+          Control: Label@2.5.1
+          Properties:
+            Text: =ThisItem.Title
+            Size: =11
+            Color: =RGBA(50, 49, 48, 1)
+            FontWeight: =FontWeight.Semibold
+            X: =12
+            Y: =24
+            Width: =860
+            Height: =22
+      - lblMineStatus:
+          Control: Label@2.5.1
+          Properties:
+            Text: |-
+              ="Status: " & ThisItem.LifecycleStatus & If(ThisItem.DPIACheckStatus = "Hold", "  ·  waiting for a data protection check", "")
+            Size: =10
+            Color: =RGBA(50, 49, 48, 1)
+            X: =12
+            Y: =46
+            Width: =860
+            Height: =18
+      - lblMineReason:
+          Control: Label@2.5.1
+          Properties:
+            Text: |-
+              ="Reason: " & ThisItem.DecisionReason
+            Size: =10
+            Color: =RGBA(122, 65, 0, 1)
+            Visible: =!IsBlank(ThisItem.DecisionReason)
+            X: =12
+            Y: =64
+            Width: =860
+            Height: =18
+- lblMineEmpty:
+    Control: Label@2.5.1
+    Properties:
+      Text: ="You have not submitted any requests yet."
+      Size: =11
+      Color: =RGBA(96, 94, 92, 1)
+      Visible: =locView = "mine" && CountRows(galMine.AllItems) = 0
+      X: =52
+      Y: =124
+      Width: =600
+      Height: =24
+- btnMineNew:
+    Control: Classic/Button@2.2.0
+    Properties:
+      Text: ="Submit a new request"
+      Size: =11
+      Visible: =locView = "mine"
+      X: =40
+      Y: =684
+      Width: =220
+      Height: =40
+      OnSelect: |-
+        =UpdateContext({locView: "form"})
